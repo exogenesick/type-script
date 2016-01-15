@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "tsd reinstall --clean"
+    "gulpfile": "tsc gulpfile.ts",
+    "postinstall": "tsd reinstall --clean && npm run gulpfile"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-typescript": "^2.10.0",
     "run-sequence": "^1.1.5",
+    "tsc": "^1.20150623.0",
     "tsd": "^0.6.5"
   }
 }
