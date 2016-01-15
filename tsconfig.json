@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "system",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true
+    },
+    "filesGlob": [
+        "gulpfile.ts",
+        "typings/*.d.ts",
+        "typings/tsd.d.ts",
+        "!dist/**",
+        "!test/**",
+        "!.tmp/**",
+        "!node_modules/**"
+    ],
+    "files": [
+        "gulpfile.ts",
+        "typings/tsd.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "type-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "tsd reinstall --clean"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "systemjs": "^0.19.16"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^2.10.0",
+    "run-sequence": "^1.1.5",
+    "tsc": "^1.20150623.0",
+    "tsd": "^0.6.5"
+  }
+}

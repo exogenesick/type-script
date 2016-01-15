@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!-- inject:css -->
+        <!-- endinject -->
+    </head>
+    <body>
+        <!-- inject:js -->
+        <!-- endinject -->
+        <script>
+          System.config({
+              baseURL: '/app'
+          });
+
+          System.import('boot.js')
+              .then(null, console.error.bind(console));
+        </script>
+    </body>
+</html>
