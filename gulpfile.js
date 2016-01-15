@@ -1,8 +1,6 @@
-System.register([], function(exports_1) {
-    "use strict";
-    return {
-        setters:[],
-        execute: function() {
-        }
-    }
+"use strict";
+var gulp = require('gulp');
+var runSequence = require('run-sequence');
+gulp.task('postinstall', function (done) {
+    return runSequence('clean', 'npm', done);
 });
