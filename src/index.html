@@ -10,11 +10,12 @@
         <!-- inject:js -->
         <!-- endinject -->
         <script>
+          System.defaultJSExtensions = true;
           System.config({
               baseURL: '/app'
           });
 
-          System.import('boot.js')
+          System.import('boot')
               .then(null, console.error.bind(console));
         </script>
     </body>

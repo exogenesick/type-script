@@ -9,27 +9,12 @@
         "noLib": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "sourceMap": false
+        "sourceMap": false,
+        "outDir": "dist"
     },
-    "compileOnSave": false,
-    "filesGlob": [
-        "gulpfile.ts",
-        "src/**/*.ts",
-        "typings/*.d.ts",
-        "typings/tsd.d.ts",
-        "!dist/**",
-        "!test/**",
-        "!.tmp/**",
-        "!node_modules/**"
-    ],
-    "files": [
-        "gulpfile.ts",
-        "src/boot.ts",
-        "src/components/app/app.component.ts",
-        "src/models/user.ts",
-        "typings/tsd.d.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    "exclude": [
+        "node_modules",
+        "dist",
+        "wwwroot"
+    ]
 }
