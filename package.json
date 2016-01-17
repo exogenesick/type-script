@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "./node_modules/.bin/gulp && npm run start",
-    "start": "http-server ./dist"
+    "postinstall": "tsd reinstall --clean && ./node_modules/.bin/gulp"
   },
-  "author": "",
+  "author": "Krzysztof Pająk <kpajak@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "angular2": "^2.0.0-beta.1",
@@ -19,8 +18,13 @@
     "gulp-angular-filesort": "^1.1.1",
     "gulp-inject": "^3.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-tslint": "^4.3.1",
     "gulp-typescript": "^2.10.0",
-    "http-server": "^0.8.5",
-    "run-sequence": "^1.1.5"
+    "gulp-webserver": "^0.9.1",
+    "mocha": "^2.3.4",
+    "run-sequence": "^1.1.5",
+    "tsd": "^0.6.5",
+    "tslint": "^3.2.1",
+    "typescript": "^1.7.5"
   }
 }

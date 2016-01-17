@@ -1,4 +1,4 @@
 export class User {
-    someProp: any;
-    constructor(username: String, password: String) {}
+  id:string
+  username:string
 }
