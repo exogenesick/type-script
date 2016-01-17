@@ -10,11 +10,25 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": false,
-        "outDir": "dist/app"
+        "outDir": "dist/"
     },
-    "exclude": [
-        "node_modules",
-        "dist",
-        "wwwroot"
-    ]
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./src/boot.ts",
+        "./src/models/User.ts",
+        "./src/repository/Repository.ts",
+        "./src/repository/UsersRepository.ts",
+        "./test/unit/UsersRepositoryTest.ts",
+        "./typings/assertion-error/assertion-error.d.ts",
+        "./typings/chai/chai.d.ts",
+        "./typings/mocha/mocha.d.ts",
+        "./typings/sinon/sinon.d.ts",
+        "./typings/tsd.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }

@@ -13,6 +13,7 @@
     "systemjs": "^0.19.16"
   },
   "devDependencies": {
+    "chai": "^3.4.1",
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-angular-filesort": "^1.1.1",

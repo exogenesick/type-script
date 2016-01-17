@@ -1,8 +1,4 @@
-/// <reference path="../../typings/mocha/mocha.d.ts" />
-/// <reference path="../../typings/chai/chai.d.ts"/>
-
-import chai = require('chai');
-
+import * as chai from 'chai';
 import {User} from "../../src/models/User";
 import {UsersRepository} from "../../src/repository/UsersRepository";
 
