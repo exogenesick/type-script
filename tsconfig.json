@@ -13,22 +13,28 @@
         "outDir": "dist/"
     },
     "filesGlob": [
-        "./**/*.ts",
+        "./typings/tsd.d.ts",
+        "./typings/**/*.ts",
+        "./src/**/*.ts",
+        "./test/**/*.ts",
         "!./node_modules/**/*.ts"
     ],
+    "atom": {
+        "rewriteTsconfig": true,
+        "formatOnSave": true
+    },
     "files": [
-        "./src/boot.ts",
-        "./src/models/User.ts",
-        "./src/repository/Repository.ts",
-        "./src/repository/UsersRepository.ts",
-        "./test/unit/UsersRepositoryTest.ts",
+        "./typings/tsd.d.ts",
         "./typings/assertion-error/assertion-error.d.ts",
         "./typings/chai/chai.d.ts",
         "./typings/mocha/mocha.d.ts",
         "./typings/sinon/sinon.d.ts",
-        "./typings/tsd.d.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+        "./typings/underscore/underscore.d.ts",
+        "./typings/uuid/UUID.d.ts",
+        "./src/boot.ts",
+        "./src/models/User.ts",
+        "./src/repository/Repository.ts",
+        "./src/repository/UsersRepository.ts",
+        "./test/unit/UsersRepositoryTest.ts"
+    ]
 }

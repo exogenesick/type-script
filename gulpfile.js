@@ -7,7 +7,7 @@ const del = require('del');
 const inject = require('gulp-inject');
 const angularFilesort = require('gulp-angular-filesort');
 const webserver = require('gulp-webserver');
-const tslint = require("gulp-tslint");
+const tslint = require('gulp-tslint');
 
 gulp.task('dist:clean', () => {
   return del(config.dist.dir);
@@ -15,8 +15,8 @@ gulp.task('dist:clean', () => {
 
 gulp.task('ts:lint', () => {
     gulp.src(config.src.dir + '**/*.ts')
-        .pipe(tslint())
-        .pipe(tslint.report('verbose'))
+      .pipe(tslint())
+      .pipe(tslint.report('verbose'));
 });
 
 gulp.task('ts:compile', () => {
@@ -24,7 +24,7 @@ gulp.task('ts:compile', () => {
   return tsProject
     .src()
     .pipe(typescript(tsProject))
-    .pipe(gulp.dest(config.dist.appDir))
+    .pipe(gulp.dest(config.dist.appDir));
 });
 
 gulp.task('assets:copy', () => {
@@ -54,7 +54,7 @@ gulp.task('webserver', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch([config.src.dir + '**/*.ts'], ['ts:lint', 'ts:compile']);
+  gulp.watch([config.src.dir + '**/*.ts'], ['ts:lint', 'ts:compile']);
 });
 
 gulp.task('default', (done) =>  {
