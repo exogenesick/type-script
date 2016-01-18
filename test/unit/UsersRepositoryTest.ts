@@ -6,8 +6,10 @@ describe('UsersRepository', () => {
     describe('#add', () => {
         it('should add user and return user by id', () => {
             // given
+            let expectedUsername: string = 'Spider';
+
             let user: User = new User();
-            user.username = 'Spider';
+            user.username = expectedUsername;
 
             // when
             let usersRepo: UsersRepository = new UsersRepository();
@@ -18,6 +20,10 @@ describe('UsersRepository', () => {
             chai.expect(foundUser.id)
                 .is
                 .eq(userId);
+
+            chai.expect(foundUser.username)
+                .is
+                .eq(expectedUsername);
         });
     })
 });
