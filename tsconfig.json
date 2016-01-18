@@ -10,7 +10,8 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": false,
-        "outDir": "dist/"
+        "outDir": "dist/",
+        "rootDir": "src/"
     },
     "filesGlob": [
         "./typings/tsd.d.ts",
@@ -31,10 +32,10 @@
         "./typings/sinon/sinon.d.ts",
         "./typings/underscore/underscore.d.ts",
         "./typings/uuid/UUID.d.ts",
-        "./src/boot.ts",
-        "./src/models/User.ts",
-        "./src/repository/Repository.ts",
-        "./src/repository/UsersRepository.ts",
-        "./test/unit/UsersRepositoryTest.ts"
+        "./src/app/boot.ts",
+        "./src/app/models/User.ts",
+        "./src/app/repository/Repository.ts",
+        "./src/app/repository/UsersRepository.ts",
+        "./src/test/unit/UsersRepositoryTest.ts"
     ]
 }
