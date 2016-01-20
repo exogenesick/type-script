@@ -1,68 +1,81 @@
-const config = require('./gulpfile.config');
-const gulp = require('gulp');
-const runSequence = require('run-sequence');
-const typescript = require('gulp-typescript');
-const rename = require('gulp-rename');
-const del = require('del');
-const inject = require('gulp-inject');
-const angularFilesort = require('gulp-angular-filesort');
-const webserver = require('gulp-webserver');
-const tslint = require('gulp-tslint');
+var config = require('./gulpfile.config');
+var gulp = require('gulp');
+var runSequence = require('run-sequence');
+var typescript = require('gulp-typescript');
+var rename = require('gulp-rename');
+var del = require('del');
+var inject = require('gulp-inject');
+var angularFilesort = require('gulp-angular-filesort');
+var webserver = require('gulp-webserver');
+var tslint = require('gulp-tslint');
 
-gulp.task('dist:clean', () => {
-  return del(config.dist.dir);
+gulp.task('dist:clean', function() {
+    return del(config.dist.dir);
 });
 
-gulp.task('ts:lint', () => {
+gulp.task('ts:lint', function() {
     gulp.src(config.src.dir + '**/*.ts')
       .pipe(tslint())
       .pipe(tslint.report('verbose'));
 });
 
-gulp.task('ts:compile', () => {
-  var tsProject = typescript.createProject('tsconfig.json');
-  return tsProject
-    .src()
-    .pipe(typescript(tsProject))
-    .pipe(gulp.dest(config.dist.appDir));
+gulp.task('ts:compile', function() {
+    var tsProject = typescript.createProject('tsconfig.json');
+    return tsProject
+        .src()
+        .pipe(typescript(tsProject))
+        .pipe(gulp.dest(config.dist.dir));
 });
 
-gulp.task('assets:copy', () => {
-  return gulp
-    .src(config.src.depsFiles)
-    .pipe(gulp.dest(config.dist.depsDir));
+gulp.task('assets:copy', function() {
+    gulp
+        .src(config.es6Dependencies)
+        .pipe(gulp.dest(config.dist.es6DepsDir));
+
+    return gulp
+        .src(config.dependencies)
+        .pipe(gulp.dest(config.dist.depsDir));
 });
 
-gulp.task('assets:inject', () => {
-  var sources = gulp
-    .src(config.dist.depsDir + '**/*.js')
-    .pipe(angularFilesort());
+gulp.task('assets:inject', function() {
+    var sources = gulp
+        .src(config.dist.depsDir + '**/*.js')
+        .pipe(angularFilesort());
 
-  return gulp.src(config.src.indexFile)
-    .pipe(gulp.dest(config.dist.dir))
-    .pipe(inject(sources, { relative: true, addRootSlash: true }))
-    .pipe(gulp.dest(config.dist.dir));
+    var sourcesEs6 = gulp
+        .src(config.dist.es6DepsDir + '**/*.js')
+        .pipe(angularFilesort());
+
+    gulp.src(config.src.indexFile)
+        .pipe(gulp.dest(config.dist.dir + 'src/main'))
+        .pipe(inject(sources, { relative: true, addRootSlash: true }))
+        .pipe(gulp.dest(config.dist.dir + 'src/main'));
+
+    return gulp.src(config.src.indexFile)
+        .pipe(gulp.dest(config.dist.dir + 'src/main'))
+        .pipe(inject(sourcesEs6, { relative: true, addRootSlash: true, name: 'es6' }))
+        .pipe(gulp.dest(config.dist.dir + 'src/main'));
 });
 
-gulp.task('webserver', () => {
-  gulp.src(config.dist.dir)
-    .pipe(webserver({
-      port: config.server.port,
-      open: true,
-      directoryListing: false
-    }));
+gulp.task('webserver', function() {
+    gulp.src(config.dist.dir + 'src/main/')
+        .pipe(webserver({
+            port: config.server.port,
+            open: true,
+            directoryListing: false
+        }));
 });
 
-gulp.task('watch', () => {
-  gulp.watch([config.src.dir + '**/*.ts'], ['ts:lint', 'ts:compile']);
+gulp.task('watch', function() {
+    gulp.watch([config.src.dir + '**/*.ts'], ['ts:lint', 'ts:compile']);
 });
 
-gulp.task('default', (done) =>  {
-  runSequence(
-    'dist:clean',
-    ['ts:compile', 'assets:copy'],
-    'assets:inject',
-    ['watch', 'webserver'],
-    done
-  );
+gulp.task('default', function(done) {
+    runSequence(
+        'dist:clean',
+        ['ts:compile', 'assets:copy'],
+        'assets:inject',
+        ['watch', 'webserver'],
+        done
+    );
 });

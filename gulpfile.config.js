@@ -1,18 +1,23 @@
 module.exports = {
+    es6Dependencies: [
+        'node_modules/angular2/bundles/angular2-polyfills.js',
+        'node_modules/es6-shim/es6-shim.min.js',
+        'node_modules/systemjs/dist/system.js'
+    ],
+    dependencies: [
+        'node_modules/rxjs/bundles/Rx.js',
+        'node_modules/angular2/bundles/angular2.min.js'
+    ],
     dist: {
         dir: 'dist/',
-        appDir: 'dist/app/',
-        depsDir: 'dist/lib/'
+        es6DepsDir: 'dist/src/main/es6/',
+        depsDir: 'dist/src/main/lib/'
     },
     src: {
         dir: 'src/',
-        indexFile: 'src/index.html',
-        depsFiles: [
-            'node_modules/systemjs/dist/system.js',
-            'node_modules/angular2/bundles/angular2.min.js'
-        ]
+        indexFile: 'src/main/index.html'
     },
     server: {
-      port: 8080
+        port: 8080
     }
 };

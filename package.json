@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "angular2": "^2.0.0-beta.1",
+    "commonjs": "0.0.1",
     "systemjs": "^0.19.16",
     "uuid": "^2.0.1"
   },
@@ -23,6 +24,7 @@
     "gulp-tslint": "^4.3.1",
     "gulp-typescript": "^2.10.0",
     "gulp-webserver": "^0.9.1",
+    "http-server": "^0.8.5",
     "mocha": "^2.3.4",
     "run-sequence": "^1.1.5",
     "tsd": "^0.6.5",

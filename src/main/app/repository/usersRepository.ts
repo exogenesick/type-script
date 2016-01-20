@@ -1,6 +1,4 @@
 import { Repository } from './Repository'
-import * as uuid from 'uuid';
-import * as _ from 'underscore';
 import { User } from '../models/User'
 
 export class UsersRepository implements Repository<User> {
@@ -19,7 +17,6 @@ export class UsersRepository implements Repository<User> {
     }
 
     add(user: User): string {
-        user.id = uuid.v4();
         this.usersStorage.push(user);
 
         return user.id;
