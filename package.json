@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "./node_modules/.bin/gulp"
+    "postinstall": "tsd install && ./node_modules/.bin/gulp"
   },
   "author": "Krzysztof Pająk <kpajak@gmail.com>",
   "license": "ISC",

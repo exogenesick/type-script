@@ -1,5 +1,8 @@
-import { Repository } from './repository'
-import { User } from '../models/user'
+/// <reference path="../../../../typings/tsd.d.ts"/>
+
+import { Repository } from './repository';
+import { User } from '../models/user';
+import * as _ from 'underscore';
 
 export class UsersRepository implements Repository<User> {
     private usersStorage: Array<User> = new Array<User>();
