@@ -8,22 +8,19 @@ var inject = require('gulp-inject');
 var angularFilesort = require('gulp-angular-filesort');
 var webserver = require('gulp-webserver');
 var tslint = require('gulp-tslint');
+var tscConfig = require('./tsconfig.json');
 
-gulp.task('dist:clean', function() {
-    return del(config.dist.dir);
-});
-
-gulp.task('ts:lint', function() {
-    gulp.src(config.src.dir + '**/*.ts')
-      .pipe(tslint())
-      .pipe(tslint.report('verbose'));
+gulp.task('dist:clean', function(done) {
+    return del(config.dist.dir, done);
 });
 
 gulp.task('ts:compile', function() {
-    var tsProject = typescript.createProject('tsconfig.json');
-    return tsProject
-        .src()
-        .pipe(typescript(tsProject))
+    var tsResult = gulp
+        .src(['./src/**/*.ts'])
+        .pipe(typescript(tscConfig.compilerOptions));
+
+    return tsResult
+        .js
         .pipe(gulp.dest(config.dist.dir));
 });
 
@@ -38,27 +35,21 @@ gulp.task('assets:copy', function() {
 });
 
 gulp.task('assets:inject', function() {
-    var sources = gulp
-        .src(config.dist.depsDir + '**/*.js')
-        .pipe(angularFilesort());
-
     var sourcesEs6 = gulp
-        .src(config.dist.es6DepsDir + '**/*.js')
-        .pipe(angularFilesort());
+        .src(config.dist.es6DepsDir + '**/*.js', {read: false});
+
+    var sources = gulp
+        .src(config.dist.depsDir + '**/*.js', {read: false});
 
     gulp.src(config.src.indexFile)
-        .pipe(gulp.dest(config.dist.dir + 'src/main'))
+        .pipe(gulp.dest(config.dist.dir + 'main'))
         .pipe(inject(sources, { relative: true, addRootSlash: true }))
-        .pipe(gulp.dest(config.dist.dir + 'src/main'));
-
-    return gulp.src(config.src.indexFile)
-        .pipe(gulp.dest(config.dist.dir + 'src/main'))
-        .pipe(inject(sourcesEs6, { relative: true, addRootSlash: true, name: 'es6' }))
-        .pipe(gulp.dest(config.dist.dir + 'src/main'));
+        .pipe(inject(sourcesEs6, { relative: true, addRootSlash: true, starttag: '<!-- inject:es6:js -->' }))
+        .pipe(gulp.dest(config.dist.dir + 'main'));
 });
 
 gulp.task('webserver', function() {
-    gulp.src(config.dist.dir + 'src/main/')
+    gulp.src(config.dist.dir + 'main/')
         .pipe(webserver({
             port: config.server.port,
             open: true,
@@ -67,14 +58,20 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch([config.src.dir + '**/*.ts'], ['ts:lint', 'ts:compile']);
+    gulp.watch([config.src.dir + '**/*'], ['rebuild']);
 });
 
-gulp.task('default', function(done) {
+gulp.task('rebuild', function(done) {
     runSequence(
         'dist:clean',
         ['ts:compile', 'assets:copy'],
         'assets:inject',
+        done
+    );
+});
+
+gulp.task('default', ['rebuild'], function(done) {
+    runSequence(
         ['watch', 'webserver'],
         done
     );

@@ -1,4 +1,4 @@
 import {bootstrap} from 'angular2/platform/browser';
-import {Hello} from './hello';
+import {Main} from './components/main';
 
-bootstrap(Hello);
+bootstrap(Main);

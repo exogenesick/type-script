@@ -10,6 +10,7 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": false,
+        "moduleResolution": "node",
         "outDir": "dist/"
     },
     "filesGlob": [
@@ -20,8 +21,7 @@
         "!./node_modules/**/*.ts"
     ],
     "atom": {
-        "rewriteTsconfig": true,
-        "formatOnSave": true
+        "rewriteTsconfig": true
     },
     "files": [
         "./typings/tsd.d.ts",
@@ -32,10 +32,10 @@
         "./typings/underscore/underscore.d.ts",
         "./typings/uuid/UUID.d.ts",
         "./src/main/app/boot.ts",
-        "./src/main/app/hello.ts",
+        "./src/main/app/components/main.ts",
         "./src/main/app/models/user.ts",
         "./src/main/app/repository/repository.ts",
         "./src/main/app/repository/usersRepository.ts",
-        "./src/test/unit/UsersRepositoryTest.ts"
+        "./src/test/unit/usersRepositoryTest.ts"
     ]
 }

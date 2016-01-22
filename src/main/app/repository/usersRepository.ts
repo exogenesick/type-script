@@ -1,11 +1,11 @@
-import { Repository } from './Repository'
-import { User } from '../models/User'
+import { Repository } from './repository'
+import { User } from '../models/user'
 
 export class UsersRepository implements Repository<User> {
     private usersStorage: Array<User> = new Array<User>();
 
     findById(userId: string): User {
-        var foundUser: User = _.find(this.usersStorage, (user) => {
+        var foundUser: User = _.find(this.usersStorage, (user: User) => {
             return user.id === userId;
         });
 

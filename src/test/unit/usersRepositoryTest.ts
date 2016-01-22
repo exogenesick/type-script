@@ -1,6 +1,6 @@
 import * as chai from 'chai';
-import {User} from '../../src/models/User';
-import {UsersRepository} from '../../src/repository/UsersRepository';
+import {User} from '../../main/app/models/user';
+import {UsersRepository} from '../../main/app/repository/usersRepository';
 
 describe('UsersRepository', () => {
     describe('#add', () => {
