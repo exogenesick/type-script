@@ -15,7 +15,7 @@ gulp.task('dist:clean', function(done) {
 
 gulp.task('ts:compile', function() {
     var tsResult = gulp
-        .src(['./src/**/*.ts'])
+        .src(config.src.dir + '**/*.ts')
         .pipe(typescript(tscConfig.compilerOptions));
 
     return tsResult
@@ -41,14 +41,14 @@ gulp.task('assets:inject', function() {
         .src(config.dist.depsDir + '**/*.js', {read: false});
 
     gulp.src(config.src.indexFile)
-        .pipe(gulp.dest(config.dist.dir + 'main'))
+        .pipe(gulp.dest(config.dist.dir))
         .pipe(inject(sources, { relative: true, addRootSlash: true }))
         .pipe(inject(sourcesEs6, { relative: true, addRootSlash: true, starttag: '<!-- inject:es6:js -->' }))
-        .pipe(gulp.dest(config.dist.dir + 'main'));
+        .pipe(gulp.dest(config.dist.dir));
 });
 
 gulp.task('webserver', function() {
-    gulp.src(config.dist.dir + 'main/')
+    gulp.src(config.dist.dir)
         .pipe(webserver({
             port: config.server.port,
             open: true,
