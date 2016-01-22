@@ -1,13 +1,12 @@
-var config = require('./gulpfile.config');
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var typescript = require('gulp-typescript');
 var rename = require('gulp-rename');
 var del = require('del');
 var inject = require('gulp-inject');
-var angularFilesort = require('gulp-angular-filesort');
 var webserver = require('gulp-webserver');
-var tslint = require('gulp-tslint');
+
+var config = require('./gulpfile.config');
 var tscConfig = require('./tsconfig.json');
 
 gulp.task('dist:clean', function(done) {
