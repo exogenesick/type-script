@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "tsd install && ./node_modules/.bin/gulp"
-  },
   "author": "Krzysztof Pająk <kpajak@gmail.com>",
   "license": "ISC",
   "dependencies": {
@@ -28,7 +25,6 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.3",
     "karma-jasmine": "^0.3.6",
-    "mocha": "^2.3.4",
     "remap-istanbul": "^0.5.1",
     "run-sequence": "^1.1.5",
     "systemjs": "^0.19.17",

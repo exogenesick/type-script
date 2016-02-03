@@ -1,5 +1,3 @@
-/// <reference path="../../typings/tsd.d.ts"/>
-
 import { Repository } from './repository';
 import { User } from '../models/user';
 import { Guid } from '../services/guid';

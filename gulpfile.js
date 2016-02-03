@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var del = require('del');
 var inject = require('gulp-inject');
 var webserver = require('gulp-webserver');
+var Server = require('karma').Server;
 
 var config = require('./gulpfile.config');
 var tscConfig = require('./tsconfig.json');
@@ -40,7 +41,7 @@ gulp.task('assets:inject', function() {
     var sources = gulp
         .src(config.dist.depsDir + '**/*.js', {read: false});
 
-    gulp.src(config.src.indexFile)
+    return gulp.src(config.src.indexFile)
         .pipe(gulp.dest(config.dist.dir))
         .pipe(inject(sources, { relative: true, addRootSlash: true }))
         .pipe(inject(sourcesEs6, { relative: true, addRootSlash: true, starttag: '<!-- inject:es6:js -->' }))
@@ -69,8 +70,17 @@ gulp.task('rebuild', function(done) {
     );
 });
 
-gulp.task('default', ['rebuild'], function(done) {
+gulp.task('test', function(done) {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
+gulp.task('default', function(done) {
     runSequence(
+        'rebuild',
+        'test',
         ['watch', 'webserver'],
         done
     );

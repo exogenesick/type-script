@@ -1,6 +1,8 @@
-import {it, describe, expect, beforeEach, inject} from 'angular2/testing';
-import {User} from '../models/user';
-import {UsersRepository} from './usersRepository';
+/// <reference path="../../typings/tsd.d.ts" />
+
+import { it, describe, expect, beforeEach, inject } from 'angular2/testing';
+import { User } from '../models/user';
+import { UsersRepository } from './usersRepository';
 
 describe('UsersRepository', () => {
     describe('#add', () => {

@@ -15,7 +15,6 @@
     },
     "filesGlob": [
         "./typings/tsd.d.ts",
-        "./typings/**/*.ts",
         "./src/**/*.ts",
         "./test/**/*.ts",
         "!./node_modules/**/*.ts"
@@ -25,18 +24,11 @@
     },
     "files": [
         "./typings/tsd.d.ts",
-        "./typings/assertion-error/assertion-error.d.ts",
-        "./typings/chai/chai.d.ts",
-        "./typings/mocha/mocha.d.ts",
-        "./typings/sinon/sinon.d.ts",
-        "./typings/underscore/underscore.d.ts",
-        "./typings/uuid/UUID.d.ts",
         "./src/boot.ts",
         "./src/components/main.ts",
         "./src/models/user.ts",
         "./src/repository/repository.ts",
         "./src/repository/usersRepository.spec.ts",
-        "./src/repository/usersRepository.test.ts",
         "./src/repository/usersRepository.ts",
         "./src/services/guid.ts"
     ]
